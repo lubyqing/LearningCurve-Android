@@ -1,4 +1,4 @@
-package com.arthas.learningcurve.interactor.impl;
+package com.arthas.learningcurve.interactor;
 
 /**
  * Created by tcz on 2016/4/7.

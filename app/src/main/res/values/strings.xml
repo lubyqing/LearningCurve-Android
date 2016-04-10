@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LearningCurve-Android</string>
+
+    <!-- login view validate -->
+    <string name="login_mobile_is_null">用户手机号不能为空</string>
+    <string name="login_mobile_error">手机号码不正确，请重新输入</string>
+    <string name="login_verify_code_is_null">验证码不能为空</string>
 </resources>

@@ -1,27 +1,38 @@
+/**
+ * Copyright (C) 2015 Fernando Cejas Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.arthas.learningcurve.injection.component;
 
 import android.content.Context;
-
-import com.dili.clean.executor.PostExecutionThread;
-import com.dili.clean.executor.ThreadExecutor;
-import com.dili.clean.ui.AbstractBaseActivity;
-import com.dili.injection.component.module.ApplicationModule;
-import com.f2prateek.rx.preferences.RxSharedPreferences;
-
+import com.arthas.learningcurve.activity.BaseActivity;
+import com.arthas.learningcurve.executor.PostExecutionThread;
+import com.arthas.learningcurve.executor.ThreadExecutor;
+import com.arthas.learningcurve.injection.module.ApplicationModule;
+import dagger.Component;
 import javax.inject.Singleton;
 
-import dagger.Component;
-
 /**
- * Created by garrett on 3/10/16.
+ * A component whose lifetime is the life of the application.
  */
-@Singleton
+@Singleton // Constraints this component to one-per-application or unscoped bindings.
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-    void inject(AbstractBaseActivity baseActivity);
+  void inject(BaseActivity baseActivity);
 
-    Context context();
-    ThreadExecutor threadExecutor();
-    PostExecutionThread postExecutionThread();
-    RxSharedPreferences rxSharedPreferences();
+  //Exposed to sub-graphs.
+  Context context();
+  ThreadExecutor threadExecutor();
+  PostExecutionThread postExecutionThread();
 }

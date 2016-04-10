@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="common_green">#66cc22</color>
+    <color name="common_bg">#f5f5f5</color>
+
+    <!-- button green -->
+    <color name="btn_green_nor">#23AC38</color>
+    <color name="btn_green_down">#1A982D</color>
+
+    <!-- button blue -->
+    <color name="btn_blue_nor">#329CE8</color>
+    <color name="btn_blue_down">#0099CC</color>
+
+    <!-- editText stroke-->
+    <color name="et_stroke_focused">#46d7a3</color>
+    <color name="et_stroke_nor">#999999</color>
+
+    <color name="text_light_black">#999999</color>
+    <color name="text_more_light_black">#666666</color>
+
+    <color name="seller_normal_click">#10000000</color>
+    <color name="seller_transparent">#00000000</color>
+
+    <color name="common_divider_line">#d4d4d4</color>
+
+    <!-- text color in login page -->
+    <color name="dark_grey_text">#5D6065</color>
+
+    <color name="page_background">#EEEEEE</color>
+    <!-- attr item -->
+    <color name="status_auditting">#fe9c2f</color>
+    <color name="status_pass">#59d76c</color>
+    <color name="status_unpass">#fd4442</color>
+    <!-- service status -->
+    <color name="pulish_color">#78ad26</color>
+
+
+    <!--drawback status color-->
+    <color name="drawback_ing">#FA4535</color>
+    <!--auth  -->
+    <color name="auth_hint_color">#BBBBBB</color>
+
+
+    <color name="register_auth_color">#23ac38</color>
+
+
+    <color name="btn_press_nor_yellow">#FF9D2C</color>
+    <color name="btn_press_down_yellow">#E88E26</color>
+    <color name="goods_listview_gray">#b2b2b2</color>
+
+
+    <color name="diamond_light_yellow">#ffa931</color>
+    <color name="diamond_light_red">#ff7f80</color>
+
+    <color name="diamond_light_green_press">#6646d7a3</color>
+    <color name="diamond_light_yellow_press">#66ffa931</color>
+    <color name="diamond_light_blue_press">#6676c1ff</color>
+    <color name="diamond_light_red_press">#66ff7f80</color>
+
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_laser">#23AC38</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+
+    <!-- common use -->
+
+    <!-- message center -->
+    <color name="text_black">#000000</color>
+
 </resources>
+
+

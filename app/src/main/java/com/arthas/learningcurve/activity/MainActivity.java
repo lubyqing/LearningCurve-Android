@@ -1,17 +1,27 @@
 package com.arthas.learningcurve.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.arthas.learningcurve.R;
-import com.arthas.learningcurve.domain.BaseReq;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
+
+    @Bind(R.id.btn_toLogin)
+    Button mToLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BaseReq baseReq = new BaseReq();
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.btn_toLogin)
+    void onClick(){
+        startActivity(LoginActivity.class);
     }
 }

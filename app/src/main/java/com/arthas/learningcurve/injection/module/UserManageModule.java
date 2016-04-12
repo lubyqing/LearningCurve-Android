@@ -17,46 +17,34 @@ package com.arthas.learningcurve.injection.module;
 
 import com.arthas.learningcurve.executor.PostExecutionThread;
 import com.arthas.learningcurve.executor.ThreadExecutor;
-import com.arthas.learningcurve.injection.PerActivity;
 import com.arthas.learningcurve.interactor.BaseInteractor;
 import com.arthas.learningcurve.interactor.impl.LoginInteractorImpl;
-import com.arthas.learningcurve.interfaceview.LoginView;
-import com.arthas.learningcurve.presenter.LoginPresenter;
+import com.arthas.learningcurve.interactor.impl.SmsInteractorImpl;
+import com.arthas.learningcurve.repository.SmsRepository;
 import com.arthas.learningcurve.repository.UserManageRepository;
+import com.arthas.learningcurve.repository.impl.SmsRepositoryImpl;
 import com.arthas.learningcurve.repository.impl.UserManageRepositoryImpl;
-import dagger.Module;
-import dagger.Provides;
 
 import javax.inject.Named;
+
+import dagger.Module;
+import dagger.Provides;
 
 /**
  * Dagger module that provides user related collaborators.
  */
 @Module
 public class UserManageModule {
-    String mobile;
-
-    String smsCode;
-
-    public UserManageModule() {
-    }
-
-    public UserManageModule(String mobile, String smsCode) {
-        this.mobile = mobile;
-        this.smsCode = smsCode;
-    }
 
     @Provides
-    @PerActivity
-    @Named("userLogin")
+    @Named("loginInteractor")
     BaseInteractor provideLoginInteractor(
             UserManageRepository userRepository, ThreadExecutor threadExecutor,
             PostExecutionThread postExecutionThread) {
         return new LoginInteractorImpl(userRepository,
                                        threadExecutor,
-                                       postExecutionThread,
-                                       mobile,
-                                       smsCode);
+                                       postExecutionThread
+                                   );
     }
 
 
@@ -64,5 +52,23 @@ public class UserManageModule {
     UserManageRepository provideUserManageRepository(UserManageRepositoryImpl userManageRepository){
         return userManageRepository;
     }
+
+    @Provides
+    @Named("smsInteractor")
+    BaseInteractor provideSmsInteractor(
+            SmsRepository smsRepository, ThreadExecutor threadExecutor,
+            PostExecutionThread postExecutionThread) {
+        return new SmsInteractorImpl(smsRepository,
+                threadExecutor,
+                postExecutionThread
+        );
+    }
+
+
+    @Provides
+    SmsRepository provideSmsRepository(SmsRepositoryImpl smsRepository){
+        return smsRepository;
+    }
+
 
 }

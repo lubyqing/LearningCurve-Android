@@ -8,8 +8,8 @@ public interface LoginView extends BaseView{
     CharSequence getUserMobile();
     CharSequence getUserVerifyCode();
 
-    String onVerifyCodeSended();
-    String onLogined();
+    void onVerifyCodeSended();
+    void onLogined();
 
 
 

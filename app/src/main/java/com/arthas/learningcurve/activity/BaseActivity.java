@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 import com.arthas.learningcurve.base.AppManager;
 import com.arthas.learningcurve.base.BaseApplication;
@@ -17,7 +18,7 @@ import com.arthas.learningcurve.utils.ToastUtils;
  * 
  */
 @SuppressLint("NewApi")
-public class BaseActivity extends Activity{
+public class BaseActivity extends FragmentActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

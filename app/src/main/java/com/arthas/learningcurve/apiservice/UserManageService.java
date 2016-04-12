@@ -11,13 +11,10 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 public interface UserManageService {
-    @POST("/user/login")
+    @POST("user/login")
     Observable<LoginResp> login(@Body LoginReq request);
 
-    @POST("/user/autoLogin")
+    @POST("user/autoLogin")
     Observable<BaseResp> getCity(@Body BaseReq request);
-
-    @GET("/user/login")
-    Observable<LoginResp> login(@Query("mobile") String mobile,@Query("smsCode") String verifyCode);
 
 }

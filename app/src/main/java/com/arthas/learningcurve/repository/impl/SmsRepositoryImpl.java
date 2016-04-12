@@ -6,6 +6,9 @@ import com.arthas.learningcurve.apiservice.SmsService;
 import com.arthas.learningcurve.apiservice.factory.RetrofitBuilderFactory;
 import com.arthas.learningcurve.domain.GetLoginSmsReq;
 import com.arthas.learningcurve.repository.SmsRepository;
+
+import javax.inject.Inject;
+
 import rx.Observable;
 
 /**
@@ -13,6 +16,9 @@ import rx.Observable;
  */
 public class SmsRepositoryImpl implements SmsRepository {
 
+    @Inject
+    public SmsRepositoryImpl() {
+    }
 
     @Override
     public Observable<String> sendSmsVerifyCode(String mobile) {
@@ -20,7 +26,7 @@ public class SmsRepositoryImpl implements SmsRepository {
         GetLoginSmsReq req = new GetLoginSmsReq();
         req.setMobile(mobile);
         return RetrofitBuilderFactory.create().build().create(SmsService.class).getLoginSms(
-               mobile).map(resp -> {
+               req).map(resp -> {
             if(resp == null
                     || resp.getCode() != 0){
 

@@ -3,35 +3,37 @@ package com.arthas.learningcurve.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import com.arthas.learningcurve.R;
 import com.arthas.learningcurve.injection.HasComponent;
 import com.arthas.learningcurve.injection.component.DaggerUserManageComponent;
 import com.arthas.learningcurve.injection.component.UserManageComponent;
 import com.arthas.learningcurve.injection.module.UserManageModule;
-import com.arthas.learningcurve.interactor.BaseInteractor;
 import com.arthas.learningcurve.interfaceview.LoginView;
 import com.arthas.learningcurve.presenter.LoginPresenter;
 import com.arthas.learningcurve.widget.BaseProgressDialog;
+import com.arthas.learningcurve.widget.HeaderBar;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-public class LoginActivity extends BaseActivity implements LoginView,HasComponent<UserManageComponent>{
+public class LoginActivity extends BaseActivity implements LoginView, HasComponent<UserManageComponent> {
 
     @Bind(R.id.et_user_mobile)
     EditText mMobileEt;
     @Bind(R.id.et_verify_code)
     EditText mVerifyCodeEt;
 
-    private BaseProgressDialog mProgressDialog;
-    LoginPresenter mLoginPresenter;
+    @Bind(R.id.view_header_bar)
+    HeaderBar mHeaderBar;
 
-    @Named("userLogin")
+    private BaseProgressDialog mProgressDialog;
+
     @Inject
-    BaseInteractor loginInteractor;
+    LoginPresenter mLoginPresenter;
 
     private UserManageComponent userManageComponent;
 
@@ -43,11 +45,14 @@ public class LoginActivity extends BaseActivity implements LoginView,HasComponen
         ButterKnife.bind(this);
         mProgressDialog = BaseProgressDialog.createDialog(this);
 
-        this.userManageComponent = DaggerUserManageComponent.builder().applicationComponent(getApplicationComponent()).activityModule(getActivityModule()).userManageModule(new UserManageModule(getUserMobile().toString(),getUserVerifyCode().toString())).build();
+        this.userManageComponent = DaggerUserManageComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .userManageModule(new UserManageModule())
+                .build();
+        userManageComponent.inject(this);
 
-        mLoginPresenter = new LoginPresenter(loginInteractor);
         mLoginPresenter.setView(this);
-
     }
 
     @Override
@@ -61,13 +66,13 @@ public class LoginActivity extends BaseActivity implements LoginView,HasComponen
     }
 
     @Override
-    public String onVerifyCodeSended() {
-        return null;
+    public void onVerifyCodeSended() {
+
     }
 
     @Override
-    public String onLogined() {
-        return null;
+    public void onLogined() {
+        startActivity(MainActivity.class);
     }
 
     @Override
@@ -86,13 +91,13 @@ public class LoginActivity extends BaseActivity implements LoginView,HasComponen
     }
 
     @Override
-    public void showErrorMsg(String errorMsg){
+    public void showErrorMsg(String errorMsg) {
         showToast(errorMsg);
     }
 
-    @OnClick({R.id.btn_get_verify_code,R.id.btn_login})
-    public void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.btn_get_verify_code, R.id.btn_login})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_get_verify_code:
                 mLoginPresenter.sendSmsVerifyCode();
                 break;

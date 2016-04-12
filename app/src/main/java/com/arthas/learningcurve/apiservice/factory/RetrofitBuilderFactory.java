@@ -13,8 +13,9 @@ public class RetrofitBuilderFactory {
 
     public static Builder create() {
         return new Builder()
-               .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-               .addConverterFactory(FastJsonConverterFactory.create())
-               .baseUrl("http://learningcurve.duapp.com");
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(FastJsonConverterFactory.create())
+//               .baseUrl("http://learningcurve.duapp.com");
+                .baseUrl("http://10.28.3.14:8080/learningcurve/");
     }
 }

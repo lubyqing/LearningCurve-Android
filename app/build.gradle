@@ -45,4 +45,5 @@ dependencies {
     compile rootProject.ext.dagger
     compile rootProject.ext.jsr250Api
     apt rootProject.ext.daggerCompiler
+
 }

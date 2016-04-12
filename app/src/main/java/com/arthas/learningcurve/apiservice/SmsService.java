@@ -9,10 +9,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 public interface SmsService {
-//    @POST("/sms/getLoginSms")
-//    Call<GetLoginSmsResp> getLoginSms(@Body GetLoginSmsReq request);
-
-    @GET("/sms/getLoginSms")
-    Observable<GetLoginSmsResp> getLoginSms(@Query("mobile") String mobile);
+    @POST("sms/getLoginSms")
+    Observable<GetLoginSmsResp> getLoginSms(@Body GetLoginSmsReq request);
 
 }

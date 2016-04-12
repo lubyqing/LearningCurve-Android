@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <attr name="headerBarStyle" format="reference" />
+    <declare-styleable name="HeaderBar">
+        <attr name="showBack" format="boolean" />
+        <attr name="headerRightImg" format="reference" />
+        <attr name="headerRightText" format="string" />
+        <attr name="headerTitle" format="string"/>
+        <attr name="headerTitleClickable" format="boolean"/>
+    </declare-styleable>
 </resources>

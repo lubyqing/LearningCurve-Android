@@ -14,4 +14,7 @@
     <dimen name="text_size_middle">15sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
 
+    <!--header bar-->
+    <dimen name="header_bar_height">48dp</dimen>
+
 </resources>

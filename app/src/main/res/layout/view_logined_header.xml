@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_logined"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/login_info_header_height"
+    android:background="@color/login_header_bg"
+    android:padding="@dimen/common_padding">
+
+    <ImageView
+        android:id="@+id/iv_user_icon"
+        android:layout_width="@dimen/common_icon_width"
+        android:layout_height="@dimen/common_icon_height"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circle_iv_bg"
+        android:padding="2dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/common_user_icon" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/iv_user_icon"
+        android:layout_marginLeft="@dimen/common_margin_left_right"
+        android:layout_toRightOf="@id/iv_user_icon"
+        android:text="Mike"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_big" />
+
+    <TextView
+        android:id="@+id/tv_user_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_user_name"
+        android:layout_below="@id/tv_user_name"
+        android:layout_marginRight="@dimen/common_margin_left_right"
+        android:layout_marginTop="@dimen/common_margin_top_bottom"
+        android:layout_toLeftOf="@+id/iv_arrow"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="為什麼，那麼帥，帥得不要不要得111111111111111111111"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_big" />
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/icon_arrow_right" />
+</RelativeLayout>

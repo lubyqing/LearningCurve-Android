@@ -4,10 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/common_bg"
     >
+    <include layout="@layout/view_not_login_header" />
+    <include layout="@layout/view_logined_header"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tab Four"
-        />
+
 </LinearLayout>

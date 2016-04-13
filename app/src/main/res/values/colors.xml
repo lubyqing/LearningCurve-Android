@@ -4,8 +4,7 @@
     <color name="transparent">#00000000</color>
     <color name="common_green">#66cc22</color>
     <color name="common_bg">#f5f5f5</color>
-    <color name="common_text_blue">#419e13</color>
-
+    <color name="common_text_green">#419e13</color>
     <!-- button green -->
     <color name="btn_green_nor">#23AC38</color>
     <color name="btn_green_down">#1A982D</color>
@@ -27,13 +26,14 @@
 
     <color name="common_divider_line">#d4d4d4</color>
 
+    <color name="login_header_bg">#59d76c</color>
+
     <!-- text color in login page -->
     <color name="dark_grey_text">#5D6065</color>
 
     <color name="page_background">#EEEEEE</color>
     <!-- attr item -->
     <color name="status_auditting">#fe9c2f</color>
-    <color name="status_pass">#59d76c</color>
     <color name="status_unpass">#fd4442</color>
     <!-- service status -->
     <color name="pulish_color">#78ad26</color>

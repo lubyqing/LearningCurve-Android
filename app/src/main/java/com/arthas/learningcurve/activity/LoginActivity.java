@@ -1,5 +1,6 @@
 package com.arthas.learningcurve.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,11 +10,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import com.arthas.learningcurve.R;
+import com.arthas.learningcurve.common.Constant;
 import com.arthas.learningcurve.injection.HasComponent;
 import com.arthas.learningcurve.injection.component.DaggerUserManageComponent;
 import com.arthas.learningcurve.injection.component.UserManageComponent;
 import com.arthas.learningcurve.injection.module.UserManageModule;
 import com.arthas.learningcurve.interfaceview.LoginView;
+import com.arthas.learningcurve.model.UserInfoModel;
 import com.arthas.learningcurve.presenter.LoginPresenter;
 import com.arthas.learningcurve.widget.BaseProgressDialog;
 import com.arthas.learningcurve.widget.HeaderBar;
@@ -66,13 +69,22 @@ public class LoginActivity extends BaseActivity implements LoginView, HasCompone
     }
 
     @Override
-    public void onVerifyCodeSended() {
-
+    public void onVerifyCodeSended(String msg) {
+        showToast(msg);
     }
 
     @Override
-    public void onLogined() {
-        startActivity(MainActivity.class);
+    public void onLogined(UserInfoModel model) {
+        showToast(model.getMessage());
+        Intent intent = getIntent();
+        try {
+            intent.setClass(this, Class.forName(intent.getStringExtra(Constant.KEY_CLASS_NAME)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
     @Override

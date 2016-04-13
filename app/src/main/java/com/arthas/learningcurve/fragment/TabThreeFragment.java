@@ -11,11 +11,11 @@ import com.arthas.learningcurve.R;
 /**
  * Created by Tcz on 16/4/12.
  */
-public class Tab1Fragment extends BaseFragment {
+public class TabThreeFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.tab_one_layout,null);
+        super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.tab_three_layout, null);
     }
 }

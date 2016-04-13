@@ -1,20 +1,19 @@
 package com.arthas.learningcurve.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import com.arthas.learningcurve.R;
-import com.arthas.learningcurve.fragment.Tab1Fragment;
-import com.arthas.learningcurve.fragment.Tab2Fragment;
-import com.arthas.learningcurve.fragment.Tab3Fragment;
-import com.arthas.learningcurve.fragment.Tab4Fragment;
+import com.arthas.learningcurve.fragment.TabOneFragment;
+import com.arthas.learningcurve.fragment.TabTwoFragment;
+import com.arthas.learningcurve.fragment.TabThreeFragment;
+import com.arthas.learningcurve.fragment.TabFourFragment;
 import com.arthas.learningcurve.fragment.TabCenterFragment;
 import com.arthas.learningcurve.widget.BottomNavigator;
 
@@ -23,21 +22,23 @@ import java.util.Stack;
 public class MainActivity extends BaseActivity implements BottomNavigator.OnItemChangedListener{
     private Stack<Fragment> mFragmentStack;
 
-    private static final String TAB1_TAG = "tab1_tag";
-    private static final String TAB2_TAG = "tab2_tag";
-    private static final String TAB3_TAG = "tab3_tag";
-    private static final String TAB4_TAG = "tab4_tag";
-    private static final String TAB_CENTER_TAG = "tab_center_tag";
+    private static final String FRAGMENT_ONE_TAG = "fragment_one_tag";
+    private static final String FRAGMENT_TWO_TAG = "fragment_two_tag";
+    private static final String FRAGMENT_THREE_TAG = "fragment_three_tag";
+    private static final String FRAGMENT_FOUR_TAG = "fragment_four_tag";
+    private static final String FRAGMENT_CENTER_TAG = "fragment_center_tag";
 
 
-    private Tab1Fragment mTab1Fragment;
-    private Tab2Fragment mTab2Fragment;
-    private Tab3Fragment mTab3Fragment;
-    private Tab4Fragment mTab4Fragment;
+    private TabOneFragment mTabOneFragment;
+    private TabTwoFragment mTabTwoFragment;
+    private TabThreeFragment mTabThreeFragment;
+    private TabFourFragment mTabFourFragment;
     private TabCenterFragment mTabCenterFragment;
 
     @Bind(R.id.view_bottom_tab)
     BottomNavigator mBottomNavigator;
+
+    private int mCurrentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,40 +63,40 @@ public class MainActivity extends BaseActivity implements BottomNavigator.OnItem
 
             mFragmentStack = new Stack<Fragment>();
 
-            mTab1Fragment = new Tab1Fragment();
-            mFragmentTransaction.add(R.id.view_container, mTab1Fragment, TAB1_TAG);
+            mTabOneFragment = new TabOneFragment();
+            mFragmentTransaction.add(R.id.view_container, mTabOneFragment, FRAGMENT_ONE_TAG);
 
-            mTab2Fragment = new Tab2Fragment();
-            mFragmentTransaction.add(R.id.view_container, mTab2Fragment, TAB2_TAG);
+            mTabTwoFragment = new TabTwoFragment();
+            mFragmentTransaction.add(R.id.view_container, mTabTwoFragment, FRAGMENT_TWO_TAG);
 
-            mTab3Fragment = new Tab3Fragment();
-            mFragmentTransaction.add(R.id.view_container, mTab3Fragment, TAB3_TAG);
+            mTabThreeFragment = new TabThreeFragment();
+            mFragmentTransaction.add(R.id.view_container, mTabThreeFragment, FRAGMENT_THREE_TAG);
 
-            mTab4Fragment = new Tab4Fragment();
-            mFragmentTransaction.add(R.id.view_container, mTab4Fragment, TAB4_TAG);
+            mTabFourFragment = new TabFourFragment();
+            mFragmentTransaction.add(R.id.view_container, mTabFourFragment, FRAGMENT_FOUR_TAG);
 
             mTabCenterFragment = new TabCenterFragment();
-            mFragmentTransaction.add(R.id.view_container, mTabCenterFragment, TAB_CENTER_TAG);
+            mFragmentTransaction.add(R.id.view_container, mTabCenterFragment, FRAGMENT_CENTER_TAG);
 
 
             mFragmentTransaction.commit();
 
         } else {
             FragmentManager fManager = getSupportFragmentManager();
-            mTab1Fragment = (Tab1Fragment) fManager.findFragmentByTag(TAB1_TAG);
-            mTab2Fragment = (Tab2Fragment) fManager.findFragmentByTag(TAB2_TAG);
-            mTab3Fragment = (Tab3Fragment) fManager.findFragmentByTag(TAB3_TAG);
-            mTab4Fragment = (Tab4Fragment) fManager.findFragmentByTag(TAB4_TAG);
-            mTabCenterFragment = (TabCenterFragment) fManager.findFragmentByTag(TAB_CENTER_TAG);
+            mTabOneFragment = (TabOneFragment) fManager.findFragmentByTag(FRAGMENT_ONE_TAG);
+            mTabTwoFragment = (TabTwoFragment) fManager.findFragmentByTag(FRAGMENT_TWO_TAG);
+            mTabThreeFragment = (TabThreeFragment) fManager.findFragmentByTag(FRAGMENT_THREE_TAG);
+            mTabFourFragment = (TabFourFragment) fManager.findFragmentByTag(FRAGMENT_FOUR_TAG);
+            mTabCenterFragment = (TabCenterFragment) fManager.findFragmentByTag(FRAGMENT_CENTER_TAG);
             if (null != mFragmentStack) {
                 mFragmentStack.clear();
                 mFragmentStack = null;
             }
         }
-        mFragmentStack.add(mTab1Fragment);
-        mFragmentStack.add(mTab2Fragment);
-        mFragmentStack.add(mTab3Fragment);
-        mFragmentStack.add(mTab4Fragment);
+        mFragmentStack.add(mTabOneFragment);
+        mFragmentStack.add(mTabTwoFragment);
+        mFragmentStack.add(mTabThreeFragment);
+        mFragmentStack.add(mTabFourFragment);
         mFragmentStack.add(mTabCenterFragment);
     }
 
@@ -105,6 +106,9 @@ public class MainActivity extends BaseActivity implements BottomNavigator.OnItem
     }
 
     private void updateFragment(int index){
+        mCurrentIndex = index;
+        updateBottomNavigator(index);
+
         FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         for(Fragment fragment : mFragmentStack){
@@ -115,6 +119,19 @@ public class MainActivity extends BaseActivity implements BottomNavigator.OnItem
 
         mFragmentTransaction.show(fragment);
         mFragmentTransaction.commitAllowingStateLoss();
+    }
 
+    private void updateBottomNavigator(int index){
+        mBottomNavigator.updateSelectState(index);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        switch (mCurrentIndex){
+            case 3:
+                mTabFourFragment.upateLoginState();
+                break;
+        }
     }
 }

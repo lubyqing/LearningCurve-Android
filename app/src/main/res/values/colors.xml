@@ -5,6 +5,7 @@
     <color name="common_green">#66cc22</color>
     <color name="common_bg">#f5f5f5</color>
     <color name="common_text_green">#419e13</color>
+    <color name="common_gray">#dddddd</color>
     <!-- button green -->
     <color name="btn_green_nor">#23AC38</color>
     <color name="btn_green_down">#1A982D</color>

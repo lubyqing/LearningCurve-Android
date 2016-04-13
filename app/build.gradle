@@ -46,4 +46,5 @@ dependencies {
     compile rootProject.ext.jsr250Api
     apt rootProject.ext.daggerCompiler
 
+    compile 'com.anton46:stepsview:0.0.2'
 }

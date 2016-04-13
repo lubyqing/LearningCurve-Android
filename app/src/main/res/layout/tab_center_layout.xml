@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:background="@color/common_bg"
+                android:layout_height="match_parent">
+    <com.arthas.learningcurve.widget.HeaderBar
+            android:id="@+id/view_header_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:headerTitle="我的计划"
+            app:showBack="false"
+            />
+
+    <LinearLayout
+            android:layout_below="@id/view_header_bar"
+            android:layout_marginTop="@dimen/common_margin_top_bottom"
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/common_padding"
+            android:paddingRight="@dimen/common_padding"
+            >
+        <Button android:layout_width="0dp" android:layout_height="100dp"
+                android:background="@color/common_green"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                />
+        <Button android:layout_width="0dp" android:layout_height="100dp"
+                android:background="@color/btn_blue_down"
+                android:layout_weight="1"
+                />
+    </LinearLayout>
+    <LinearLayout
+            android:id="@+id/ll_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_top"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="@dimen/common_padding"
+            android:paddingRight="@dimen/common_padding"
+            >
+        <Button android:layout_width="0dp" android:layout_height="100dp"
+                android:background="@color/yellow"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                />
+        <Button android:layout_width="0dp" android:layout_height="100dp"
+                android:background="@color/et_stroke_focused"
+                android:layout_weight="1"
+                />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+                  android:padding="@dimen/common_padding"
+            >
+        <ImageButton
+                android:layout_below="@id/ll_center"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/circle_center"
+                />
+        <ImageButton
+                android:layout_below="@id/ll_center"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:src="@drawable/circle_center"
+                />
+    </LinearLayout>
+
+</RelativeLayout>

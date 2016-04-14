@@ -26,10 +26,11 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
     private CharSequence mTitle = "";
     private boolean isTitleClickable = false;
     private boolean isShowBack = true;
-    private Drawable mRightDrawable;
     private CharSequence mRightText;
+
     private TextView mLeftBtn;
     private TextView mTitleTxt;
+    private TextView mRightTv;
 
     private OnHeaderBtnClickedListener mOnHeaderBtnClickedListener;
 
@@ -53,8 +54,6 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
                         true);
         isShowBack = a.getBoolean(R.styleable.HeaderBar_showBack,
                 true);
-        mRightDrawable = a
-                .getDrawable(R.styleable.HeaderBar_headerRightImg);
         mRightText = a
                 .getText(R.styleable.HeaderBar_headerRightText);
 
@@ -69,22 +68,26 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
         mLeftBtn = (TextView) layout.findViewById(R.id.tv_headerbar_left);
         mLeftBtn.setOnClickListener(this);
 
+
         setLeftBtnVisibility(isShowBack);
-            mTitleTxt = (TextView) layout.findViewById(R.id.tv_headerbar_title);
-            mTitleTxt.setVisibility(View.VISIBLE);
-            mTitleTxt.setText(mTitle);
-            if (isTitleClickable) {
-                // layout.findViewById(R.id.ll_title_container).setOnClickListener(this);
-                mTitleTxt.setOnClickListener(this);
+        mTitleTxt = (TextView) layout.findViewById(R.id.tv_headerbar_title);
+        mTitleTxt.setVisibility(View.VISIBLE);
+        mTitleTxt.setText(mTitle);
+        if (isTitleClickable) {
+            // layout.findViewById(R.id.ll_title_container).setOnClickListener(this);
+            mTitleTxt.setOnClickListener(this);
         }
 
+        mRightTv = (TextView) layout.findViewById(R.id.tv_right_text);
+        if (!TextUtils.isEmpty(mRightText)){
+            mRightTv.setVisibility(VISIBLE);
+            mRightTv.setText(mRightText);
+        }
     }
 
 
-
-
     public void setLeftBtnVisibility(boolean isVisibility) {
-            mLeftBtn.setVisibility(isVisibility ?View.VISIBLE :GONE);
+        mLeftBtn.setVisibility(isVisibility ? View.VISIBLE : GONE);
     }
 
     public void setCenterTextDrawable(int sourceId, int roate) {

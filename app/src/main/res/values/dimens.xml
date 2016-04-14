@@ -20,6 +20,9 @@
     <dimen name="common_icon_height">75dp</dimen>
     <dimen name="common_icon_width">75dp</dimen>
 
-    <dimen name="login_info_header_height">130dp</dimen>
+    <dimen name="common_small_icon_height">45dp</dimen>
+    <dimen name="common_small_icon_width">45dp</dimen>
+
+    <dimen name="login_info_header_height">110dp</dimen>
 
 </resources>

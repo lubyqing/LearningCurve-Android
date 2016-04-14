@@ -3,7 +3,7 @@
     android:id="@+id/view_logined"
     android:layout_width="match_parent"
     android:layout_height="@dimen/login_info_header_height"
-    android:background="@color/login_header_bg"
+    android:background="@color/common_text_green"
     android:padding="@dimen/common_padding">
 
     <ImageView
@@ -20,12 +20,12 @@
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/iv_user_icon"
         android:layout_marginLeft="@dimen/common_margin_left_right"
+        android:layout_marginTop="@dimen/common_margin_top_bottom"
         android:layout_toRightOf="@id/iv_user_icon"
         android:text="Mike"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_size_big" />
+        android:textSize="@dimen/text_size_large" />
 
     <TextView
         android:id="@+id/tv_user_sign"

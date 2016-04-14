@@ -13,7 +13,7 @@
             android:theme="@style/NoTitleBarAppTheme"
             android:hardwareAccelerated="false"
             >
-        <activity android:name=".activity.SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity android:name=".activity.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -22,7 +22,9 @@
         </activity>
 
         <activity android:name=".activity.LoginActivity"/>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.SplashActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        <activity android:name=".activity.UserInfoActivity"/>
+        <activity android:name=".activity.EditUserActivity"/>
     </application>
 
 </manifest>

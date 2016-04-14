@@ -25,9 +25,9 @@
     <color name="seller_normal_click">#10000000</color>
     <color name="seller_transparent">#00000000</color>
 
-    <color name="common_divider_line">#d4d4d4</color>
-
+    <color name="common_divider_line">#dddddd</color>
     <color name="login_header_bg">#59d76c</color>
+
 
     <!-- text color in login page -->
     <color name="dark_grey_text">#5D6065</color>

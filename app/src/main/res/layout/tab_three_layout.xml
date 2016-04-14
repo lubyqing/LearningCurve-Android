@@ -4,8 +4,8 @@
               android:background="@color/common_bg"
               android:layout_height="match_parent">
 
-    <com.anton46.stepsview.StepsView
-            android:id="@+id/view_step"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <!--<com.anton46.stepsview.StepsView-->
+            <!--android:id="@+id/view_step"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
 </LinearLayout>

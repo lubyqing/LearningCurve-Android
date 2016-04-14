@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/common_padding">
+
+    <com.arthas.learningcurve.widget.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:headerTitle="个人信息"
+        app:showBack="true" />
+
+    <!-- first part begin -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/common_margin_top_bottom"
+        android:background="@color/common_divider_line" />
+
+    <com.arthas.learningcurve.widget.SingleLineText
+        android:id="@+id/view_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isImgContent="true" />
+
+    <com.arthas.learningcurve.widget.SingleLineText
+        android:id="@+id/view_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.arthas.learningcurve.widget.SingleLineText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.arthas.learningcurve.widget.SingleLineText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowBottomLine="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_divider_line" />
+    <!-- first part end -->
+
+    <!-- second part begin -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/common_margin_top_bottom"
+        android:background="@color/common_divider_line" />
+
+    <com.arthas.learningcurve.widget.SingleLineText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:isShowBottomLine="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/common_divider_line" />
+    <!-- second part end -->
+
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_marginRight="@dimen/common_margin"
+        android:layout_marginTop="36.33dp"
+        android:background="@drawable/selector_red_button"
+        android:text="注销"
+        android:textColor="#fa4535"
+        android:textSize="16sp" />
+</LinearLayout>

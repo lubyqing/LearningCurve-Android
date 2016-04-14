@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.arthas.learningcurve.R;
 import com.arthas.learningcurve.activity.LoginActivity;
+import com.arthas.learningcurve.activity.UserInfoActivity;
 import com.arthas.learningcurve.common.Constant;
 import com.arthas.learningcurve.model.UserInfo;
 import com.arthas.learningcurve.utils.AppPrefsUtils;
@@ -81,6 +82,7 @@ public class TabFourFragment extends BaseFragment {
                 intent.putExtra(Constant.KEY_CLASS_NAME, getActivity().getClass().getName());
                 break;
             case R.id.view_logined:
+                intent.setClass(getActivity(), UserInfoActivity.class);
                 break;
         }
         startActivity(intent);

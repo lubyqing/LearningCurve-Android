@@ -184,17 +184,17 @@ public class BadgeView extends TextView {
             // TODO verify that parent is indeed a ViewGroup
             ViewGroup group = (ViewGroup) parent;
             int index = group.indexOfChild(target);
-            
+
             group.removeView(target);
             group.addView(container, index, lp);
-            
+
             container.addView(target);
             
             this.setVisibility(View.GONE);
             container.addView(this);
             
             group.invalidate();
-            
+
         }
         
     }

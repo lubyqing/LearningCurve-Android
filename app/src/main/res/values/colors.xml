@@ -15,8 +15,19 @@
     <color name="btn_blue_nor">#329CE8</color>
     <color name="btn_blue_down">#0099CC</color>
 
-    <!-- editText stroke-->
+    <!-- center bg -->
+    <color name="center_my_category_bg">#0099CC</color>
+    <color name="center_my_plan_bg">#23ac38</color>
+    <color name="center_recent_bg">#46d7a3</color>
+    <color name="center_overdue_bg">#66999999</color>
+    <color name="center_x">#FF9D2C</color>
+    <color name="center_completed_bg">#66cc22</color>
+    <color name="center_begin_bg">#ff7f80</color>
+
+
     <color name="et_stroke_focused">#46d7a3</color>
+
+    <!-- editText stroke-->
     <color name="et_stroke_nor">#999999</color>
 
     <color name="text_light_black">#999999</color>
@@ -55,11 +66,10 @@
 
 
     <color name="diamond_light_yellow">#ffa931</color>
-    <color name="diamond_light_red">#ff7f80</color>
 
     <color name="diamond_light_green_press">#6646d7a3</color>
     <color name="diamond_light_yellow_press">#66ffa931</color>
-    <color name="diamond_light_blue_press">#6676c1ff</color>
+    <color name="diamond_light_blue_press">#76c1ff</color>
     <color name="diamond_light_red_press">#66ff7f80</color>
 
     <color name="result_points">#c099cc00</color>

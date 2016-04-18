@@ -7,6 +7,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import com.arthas.learningcurve.R;
+import com.bumptech.glide.Glide;
 
 
 import butterknife.Bind;
@@ -28,18 +29,20 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-        mBackgroundIv.setBackground(getResources().getDrawable(R.drawable.splash_bg));
-        Animation animation = new AlphaAnimation(0.2f,1.0f);
-        animation.setDuration(3000);
-        mBackgroundIv.startAnimation(animation);
-        mHandler = new Handler() ;
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(MainActivity.class);
-                finish();
-            }
-        },3000);
+//        mBackgroundIv.setBackground(getResources().getDrawable(R.drawable.splash_bg));
+//        Animation animation = new AlphaAnimation(0.2f,1.0f);
+//        animation.setDuration(3000);
+//        mBackgroundIv.startAnimation(animation);
+        Glide.with(this)
+                .load("http://img0.imgtn.bdimg.com/it/u=269362335,3946859697&fm=21&gp=0.jpg")
+                .asGif()
+                .error(R.drawable.splash_bg)
+                .into(mBackgroundIv);
+        mHandler = new Handler();
+        mHandler.postDelayed(() -> {
+            startActivity(MainActivity.class);
+            finish();
+        }, 3000);
 
     }
 }

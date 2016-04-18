@@ -13,7 +13,7 @@
         app:showBack="false" />
 
     <LinearLayout
-        android:id="@+id/ll_top"
+        android:id="@+id/ll_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view_header_bar"
@@ -21,67 +21,74 @@
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding">
 
-        <TextView
-            android:id="@+id/tv_category"
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_my_category"
             style="@style/CenterItemTextStyle"
             android:layout_marginRight="5dp"
-            android:background="@color/common_green"
+            android:background="@color/center_my_category_bg"
             android:text="我的分类" />
 
-        <TextView
-            android:id="@+id/tv_recent_plan"
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_my_plan"
             style="@style/CenterItemTextStyle"
-            android:background="@color/btn_blue_down"
-            android:text="最近计划"
-            />
+            android:background="@color/center_my_plan_bg"
+            android:text="我的计划" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_center"
+        android:id="@+id/ll_second"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_top"
+        android:layout_below="@id/ll_first"
         android:layout_marginTop="5dp"
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding">
 
-        <TextView
-            android:id="@+id/tv_completed_plan"
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_recent_plan"
             style="@style/CenterItemTextStyle"
             android:layout_marginRight="5dp"
-            android:background="@color/btn_press_nor_yellow"
-            android:text="已完成"
-            />
+            android:background="@color/center_recent_bg"
+            android:text="最近计划" />
 
-        <TextView
-            android:id="@+id/tv_overdue_plan"
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_time_line"
             style="@style/CenterItemTextStyle"
-            android:background="@color/et_stroke_focused"
-            android:text="已逾期"
-            />
+            android:background="@color/center_x"
+            android:text="时间轴" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_third"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:padding="@dimen/common_padding">
+        android:layout_below="@id/ll_second"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingRight="@dimen/common_padding">
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_center"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/circle_center" />
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_completed_plan"
+            style="@style/CenterItemTextStyle"
+            android:layout_marginRight="5dp"
+            android:background="@color/center_completed_bg"
+            android:text="已完成" />
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_below="@id/ll_center"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/circle_center" />
+        <com.arthas.learningcurve.widget.ZoomTextView
+            android:id="@+id/tv_overdue_plan"
+            style="@style/CenterItemTextStyle"
+            android:background="@color/center_overdue_bg"
+            android:text="已逾期" />
     </LinearLayout>
+
+    <com.arthas.learningcurve.widget.ZoomTextView
+        android:id="@+id/tv_add_new"
+        style="@style/CenterItemTextStyle"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/common_margin_left_right"
+        android:background="@color/center_begin_bg"
+        android:text="开始定制"
+        android:textSize="@dimen/text_size_large" />
 
 </RelativeLayout>

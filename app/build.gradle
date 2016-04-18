@@ -51,4 +51,6 @@ dependencies {
     compile 'com.github.kingideayou:tagcloudview:1.0.2'
     compile 'com.github.bmelnychuk:atv:1.2.+'
     compile 'com.github.alorma:timelineview:2.3.0'
+    compile 'me.gujun.android.taggroup:library:1.4@aar'
+    compile 'com.github.johnkil.print:print:1.2.2'
 }

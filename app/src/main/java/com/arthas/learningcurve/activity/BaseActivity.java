@@ -12,13 +12,14 @@ import com.arthas.learningcurve.base.BaseApplication;
 import com.arthas.learningcurve.injection.component.ApplicationComponent;
 import com.arthas.learningcurve.injection.module.ActivityModule;
 import com.arthas.learningcurve.utils.ToastUtils;
+import com.arthas.learningcurve.widget.HeaderBar;
 
 /**
  * 窗口基类
  * 
  */
 @SuppressLint("NewApi")
-public class BaseActivity extends FragmentActivity{
+public class BaseActivity extends FragmentActivity implements HeaderBar.OnHeaderBtnClickedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,5 +115,20 @@ public class BaseActivity extends FragmentActivity{
      */
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
+    }
+
+    @Override
+    public void onHeaderLeftClicked() {
+        this.finish();
+    }
+
+    @Override
+    public void onHeaderTitleClicked() {
+
+    }
+
+    @Override
+    public void onHeaderRightClicked() {
+
     }
 }

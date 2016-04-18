@@ -16,4 +16,9 @@
         app:tcvSingleLine="false"
         app:tcvCanTagClick="true"
         />
+    <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/tag_group"
+            android:padding="@dimen/common_padding"
+            style="@style/TagGroup"
+            />
 </LinearLayout>

@@ -82,6 +82,7 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
         if (!TextUtils.isEmpty(mRightText)){
             mRightTv.setVisibility(VISIBLE);
             mRightTv.setText(mRightText);
+            mRightTv.setOnClickListener(this);
         }
     }
 
@@ -193,9 +194,14 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
                     mOnHeaderBtnClickedListener.onHeaderLeftClicked();
                 }
                 break;
-            case /* R.id.ll_title_container */ R.id.tv_headerbar_title:
+            case R.id.tv_headerbar_title:
                 if (mOnHeaderBtnClickedListener != null) {
                     mOnHeaderBtnClickedListener.onHeaderTitleClicked();
+                }
+                break;
+            case R.id.tv_right_text:
+                if (mOnHeaderBtnClickedListener != null) {
+                    mOnHeaderBtnClickedListener.onHeaderRightClicked();
                 }
                 break;
 
@@ -206,5 +212,11 @@ public class HeaderBar extends RelativeLayout implements View.OnClickListener {
         void onHeaderLeftClicked();
 
         void onHeaderTitleClicked();
+
+        void onHeaderRightClicked();
+    }
+
+    public void setOnHeaderBtnClickedListener(OnHeaderBtnClickedListener mOnHeaderBtnClickedListener) {
+        this.mOnHeaderBtnClickedListener = mOnHeaderBtnClickedListener;
     }
 }

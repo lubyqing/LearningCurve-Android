@@ -11,7 +11,7 @@
 
     <dimen name="text_size_large">18sp</dimen>
     <dimen name="text_size_big">16sp</dimen>
-    <dimen name="text_size_middle">15sp</dimen>
+    <dimen name="text_size_middle">14sp</dimen>
     <dimen name="text_size_small">12sp</dimen>
 
     <!--header bar-->

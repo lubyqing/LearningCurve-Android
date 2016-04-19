@@ -123,17 +123,4 @@ public class MyCategoryActivity extends BaseActivity {
     public void onHeaderRightClicked() {
         startActivity(AddNewCategoryActivity.class);
     }
-
-    private void addProfileData(TreeNode profile, List<CategoryModel> childList) {
-
-        if (childList != null && childList.size() > 0) {
-            for (CategoryModel model : childList) {
-                TreeNode
-                        socialNetworks =
-                        new TreeNode(model).setViewHolder(
-                                new SecondLevelHolder(this));
-                profile.addChildren(socialNetworks);
-            }
-        }
-    }
 }

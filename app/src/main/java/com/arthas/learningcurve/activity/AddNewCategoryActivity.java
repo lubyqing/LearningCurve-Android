@@ -6,7 +6,8 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.arthas.learningcurve.R;
-import me.gujun.android.taggroup.TagGroup;
+import com.cunoraz.tagview.Tag;
+import com.cunoraz.tagview.TagView;
 import me.next.tagview.TagCloudView;
 
 import java.util.ArrayList;
@@ -19,8 +20,8 @@ public class AddNewCategoryActivity extends BaseActivity implements TagCloudView
     @Bind(R.id.view_tag_cloud)
     TagCloudView mTagCloudView;
 
-    @Bind(R.id.tag_group)
-    TagGroup mTagGroup;
+    @Bind(R.id.view_tag)
+    TagView mTagView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +34,16 @@ public class AddNewCategoryActivity extends BaseActivity implements TagCloudView
 
     private void initData() {
         List<String> tags = new ArrayList<>();
+        List<Tag> tagList = new ArrayList<>();
+        Tag tag = null;
         for (int i = 0; i < 20; i++) {
             tags.add("标签sss" + i);
+            tag = new Tag("Englist"+i);
+            tag.isDeletable = true;
+            tagList.add(tag);
         }
 
-        mTagGroup.setTags(tags);
+        mTagView.addTags(tagList);
 
         mTagCloudView.setTags(tags);
         mTagCloudView.setOnTagClickListener(this);

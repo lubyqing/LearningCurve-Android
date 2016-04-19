@@ -10,4 +10,14 @@ public interface Constant {
     }
 
     String KEY_CLASS_NAME = "key_class_name";
+
+    /**
+     *  三级目录
+     */
+    interface CategoryLevel{
+        int FIRST_LEVEL = 1;
+        int SECOND_LEVEL = 2;
+        int THIRD_LEVEL = 3;
+
+    }
 }

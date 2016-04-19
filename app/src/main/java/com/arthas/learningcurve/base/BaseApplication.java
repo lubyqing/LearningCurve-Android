@@ -6,6 +6,7 @@ import android.util.Log;
 import com.arthas.learningcurve.injection.component.ApplicationComponent;
 import com.arthas.learningcurve.injection.component.DaggerApplicationComponent;
 import com.arthas.learningcurve.injection.module.ApplicationModule;
+import com.github.johnkil.print.PrintConfig;
 
 public class BaseApplication extends Application {
 
@@ -31,6 +32,8 @@ public class BaseApplication extends Application {
         mApplicationContext = getApplicationContext();
 
         initializeInjector();
+
+        PrintConfig.initDefault(getAssets(),"fonts/material-icon-font.ttf");
 
         // 记录崩溃异常
         GlobalExceptionHandler ueHandler = new GlobalExceptionHandler(this);

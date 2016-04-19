@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:minHeight="@dimen/node_third_level_height"
+    android:paddingLeft="45dp"
+    android:paddingRight="@dimen/common_padding"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_height="match_parent">
+
+    <com.github.johnkil.print.PrintView
+        android:id="@id/pv_node_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:iconColor="@color/common_green"
+        app:iconSize="@dimen/node_second_level_icon_size"
+        app:iconText="@string/ic_keyboard_arrow_right" />
+
+    <com.github.johnkil.print.PrintView
+        android:id="@id/pv_node_icon"
+        android:layout_toRightOf="@id/pv_node_arrow"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconColor="@color/common_yellow"
+        app:iconSize="@dimen/node_third_level_icon_size" />
+
+    <TextView
+        android:id="@id/pv_node_text"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/text_size_middle"
+        android:textColor="@color/common_gray"
+        android:layout_toRightOf="@id/pv_node_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.github.johnkil.print.PrintView
+        android:id="@id/pv_node_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        app:iconColor="@color/common_yellow"
+        app:iconSize="26dp"
+        app:iconText="@string/ic_delete" />
+
+</RelativeLayout>

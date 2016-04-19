@@ -25,4 +25,11 @@
 
     <dimen name="login_info_header_height">110dp</dimen>
 
+    <dimen name="node_first_level_height">56dp</dimen>
+    <dimen name="node_second_level_height">48dp</dimen>
+    <dimen name="node_third_level_height">40dp</dimen>
+    <dimen name="node_first_level_icon_size">36dp</dimen>
+    <dimen name="node_second_level_icon_size">26dp</dimen>
+    <dimen name="node_third_level_icon_size">22dp</dimen>
+
 </resources>

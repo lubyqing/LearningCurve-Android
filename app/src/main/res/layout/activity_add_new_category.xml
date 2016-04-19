@@ -5,6 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_height"
+        android:layout_marginLeft="@dimen/common_margin_left_right"
+        android:layout_marginRight="@dimen/common_margin_left_right"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal">
+
+        <com.arthas.learningcurve.widget.ClearEditText
+            android:id="@+id/et_user_mobile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/et_selector"
+            android:drawableLeft="@drawable/icon_user"
+            android:drawablePadding="@dimen/common_inner_small_padding"
+            android:drawableRight="@drawable/icon_clear"
+            android:hint="请输入分类名称"
+            android:padding="@dimen/common_inner_small_padding"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_middle" />
+
+        <Button
+            android:id="@+id/btn_get_verify_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/common_margin_left_right"
+            android:background="@drawable/btn_blue_selector"
+            android:paddingTop="@dimen/common_inner_small_padding"
+            android:paddingBottom="@dimen/common_inner_small_padding"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="添加"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_big" />
+    </LinearLayout>
+
     <me.next.tagview.TagCloudView
         android:id="@+id/view_tag_cloud"
         android:layout_width="match_parent"

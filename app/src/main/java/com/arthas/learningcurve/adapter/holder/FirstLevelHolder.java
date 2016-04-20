@@ -32,7 +32,7 @@ public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel>
 
         SpannableString spannableString = new SpannableString(" (20)");
         ForegroundColorSpan span = new ForegroundColorSpan(context.getResources().getColor(R.color.common_blue));
-        spannableString.setSpan(span,0,spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(span, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(30);
         spannableString.setSpan(sizeSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvValue.setText(value.getCategoryName());
@@ -40,10 +40,22 @@ public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel>
 
         PrintView iconView = (PrintView) view.findViewById(R.id.pv_node_icon);
         iconView.setIconText(value.getIcon());
+        iconView.setIconColor(value.getIconColor());
 
         PrintView addView = (PrintView) view.findViewById(R.id.pv_node_add);
 
         PrintView deleteView = (PrintView) view.findViewById(R.id.pv_node_delete);
+
+        addView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CategoryModel model = new CategoryModel();
+                model.setCategoryName("Two level");
+                model.setIcon(value.getIcon());
+                model.setIconColor(value.getIconColor());
+                tView.addNode(node,new TreeNode(model).setViewHolder(new SecondLevelHolder(context)));
+            }
+        });
 
         return view;
     }

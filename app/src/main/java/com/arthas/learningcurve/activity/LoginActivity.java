@@ -76,15 +76,8 @@ public class LoginActivity extends BaseActivity implements LoginView, HasCompone
     @Override
     public void onLogined(UserInfoModel model) {
         showToast(model.getMessage());
-        Intent intent = getIntent();
-        try {
-            intent.setClass(this, Class.forName(intent.getStringExtra(Constant.KEY_CLASS_NAME)));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+
+        startActivity(getBackOnNewIntent());
     }
 
     @Override

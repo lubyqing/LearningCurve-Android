@@ -1,92 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/common_bg"
-              android:padding="@dimen/common_padding"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:orientation="vertical">
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="选择分类图标"
-              android:textSize="@dimen/text_size_middle"
-              android:textColor="@color/text_light_black"
-            />
+    <com.arthas.learningcurve.widget.HeaderBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:headerTitle="新增分类"
+        app:showBack="true" />
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/common_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择分类图标"
+            android:textColor="@color/text_light_black"
+            android:textSize="@dimen/text_size_middle" />
+
+        <LinearLayout
             android:id="@+id/ll_icon_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/dotted_border_blue"
             android:layout_marginTop="@dimen/common_margin_top_bottom"
-            android:padding="@dimen/common_inner_small_padding"
-            >
-        <com.github.johnkil.print.PrintView
+            android:background="@drawable/dotted_border_blue"
+            android:padding="@dimen/common_inner_small_padding">
+
+            <com.github.johnkil.print.PrintView
                 android:id="@id/pv_node_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                app:iconColor="@color/common_dark_grey"
                 app:iconSize="@dimen/node_first_level_icon_size"
-                app:iconText="@string/ic_folder"
-                app:iconColor="@color/common_blue"
-                />
-    </LinearLayout>
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="选择图标颜色"
-              android:textSize="@dimen/text_size_middle"
-              android:textColor="@color/text_light_black"
-              android:layout_marginTop="@dimen/common_margin"
-            />
-    <LinearLayout
+                app:iconText="@string/ic_folder" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:text="选择图标颜色"
+            android:textColor="@color/text_light_black"
+            android:textSize="@dimen/text_size_middle" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_margin_top_bottom"
-            android:weightSum="6"
-            >
-        <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
-                android:layout_width="0dp" android:layout_height="30dp"
-                android:background="@color/common_blue"
-                android:layout_marginRight="@dimen/common_margin_left_right"
-                android:layout_weight="1"
-                app:label_backgroundColor="@color/diamond_light_red_press"
-                app:label_distance="3dp"
-                app:label_orientation="LEFT_TOP"
-                app:label_text="POP"
-                app:label_textSize="8sp"
+            android:weightSum="6">
 
-                />
-        <TextView android:layout_width="0dp" android:layout_height="30dp"
-                  android:background="@color/common_green"
-                  android:layout_marginRight="@dimen/common_margin_left_right"
-                  android:layout_weight="1"
-                />
-        <TextView android:layout_width="0dp" android:layout_height="30dp"
-                  android:background="@color/common_gray"
-                  android:layout_marginRight="@dimen/common_margin_left_right"
-                  android:layout_weight="1"
-                />
-        <TextView android:layout_width="0dp" android:layout_height="30dp"
-                  android:background="@color/common_yellow"
-                  android:layout_weight="1"
-                />
-    </LinearLayout>
+            <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
+                android:id="@+id/tv_label_dark_gray"
+                style="@style/labelViewStyle"
+                android:background="@color/common_dark_grey" />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="添加新的分类或选择系统分类"
-              android:textSize="@dimen/text_size_middle"
-              android:textColor="@color/text_light_black"
-              android:layout_marginTop="@dimen/common_margin"
-            />
+            <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
+                android:id="@+id/tv_label_blue"
+                style="@style/labelViewStyle"
+                android:background="@color/common_blue" />
 
-    <LinearLayout
+            <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
+                android:id="@+id/tv_label_green"
+                style="@style/labelViewStyle"
+                android:background="@color/common_green" />
+
+            <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
+                android:id="@+id/tv_label_gray"
+                style="@style/labelViewStyle"
+                android:background="@color/common_gray" />
+
+            <com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView
+                android:id="@+id/tv_label_yellow"
+                style="@style/labelViewStyle"
+                android:background="@color/common_yellow" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:text="添加新的分类或选择系统分类"
+            android:textColor="@color/text_light_black"
+            android:textSize="@dimen/text_size_middle" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/common_height"
+            android:layout_height="@dimen/common_height_small"
             android:layout_marginTop="@dimen/common_margin"
             android:orientation="horizontal">
 
-        <com.arthas.learningcurve.widget.ClearEditText
+            <com.arthas.learningcurve.widget.ClearEditText
                 android:id="@+id/et_category_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -97,48 +108,39 @@
                 android:hint="请输入分类名称"
                 android:padding="@dimen/common_inner_small_padding"
                 android:singleLine="true"
-                android:textSize="@dimen/text_size_middle"/>
+                android:textSize="@dimen/text_size_middle" />
 
-        <Button
+            <Button
                 android:id="@+id/btn_add_category"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/common_margin_left_right"
                 android:background="@drawable/btn_blue_selector"
-                android:paddingTop="@dimen/common_inner_small_padding"
                 android:paddingBottom="@dimen/common_inner_small_padding"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
+                android:paddingTop="@dimen/common_inner_small_padding"
                 android:text="添加"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_size_big"/>
-    </LinearLayout>
+                android:textSize="@dimen/text_size_big" />
+        </LinearLayout>
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="系统分类"
-              android:textSize="@dimen/text_size_middle"
-              android:textColor="@color/text_light_black"
-              android:layout_marginTop="@dimen/common_margin"
-            />
-
-    <me.next.tagview.TagCloudView
-            android:id="@+id/view_tag_cloud"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tcvItemBorderHorizontal="8dp"
-            app:tcvItemBorderVertical="6dp"
-            app:tcvBorder="8dp"
-            app:tcvTextColor="#123455"
-            app:tcvSingleLine="false"
-            app:tcvCanTagClick="true"
-            android:visibility="gone"
-            />
+            android:layout_marginTop="@dimen/common_margin"
+            android:text="系统分类"
+            android:textColor="@color/text_light_black"
+            android:textSize="@dimen/text_size_middle" />
 
-    <com.cunoraz.tagview.TagView
+        <com.cunoraz.tagview.TagView
             android:id="@+id/view_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common_margin"
-            />
+            app:lineMargin="@dimen/common_margin"
+            app:tagMargin="@dimen/common_margin_left_right"
+            app:textPaddingLeft="@dimen/common_padding"
+            app:textPaddingRight="@dimen/common_padding" />
+    </LinearLayout>
 </LinearLayout>

@@ -6,6 +6,7 @@
     <color name="common_bg">#f5f5f5</color>
     <color name="common_text_green">#419e13</color>
     <color name="common_gray">#dddddd</color>
+    <color name="common_dark_grey">#5D6065</color>
     <color name="common_blue">#0099CC</color>
     <color name="common_yellow">#FF9D2C</color>
     <!-- button green -->
@@ -43,7 +44,6 @@
 
 
     <!-- text color in login page -->
-    <color name="dark_grey_text">#5D6065</color>
 
     <color name="page_background">#EEEEEE</color>
     <!-- attr item -->

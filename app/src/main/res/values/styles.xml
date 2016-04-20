@@ -74,5 +74,18 @@
         <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
     </style>
 
+    <style name="labelViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginRight">@dimen/common_margin_left_right</item>
+        <item name="android:layout_weight">1</item>
+        <item name="com.arthas.learningcurve:label_backgroundColor">@color/drawback_ing</item>
+        <item name="com.arthas.learningcurve:label_distance">2dp</item>
+        <item name="com.arthas.learningcurve:label_orientation">RIGHT_TOP</item>
+        <item name="com.arthas.learningcurve:label_text">@string/label_selected_text</item>
+        <item name="com.arthas.learningcurve:label_textSize">8sp</item>
+        <item name="com.arthas.learningcurve:label_visual">false</item>
+    </style>
+
 
 </resources>

@@ -1,5 +1,6 @@
 package com.arthas.learningcurve.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -28,6 +29,7 @@ public class MyCategoryActivity extends BaseActivity {
 
     private TreeNode mRootTreeNode;
     private List<CategoryModel> categoryModelList;
+    AndroidTreeView mTreeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class MyCategoryActivity extends BaseActivity {
         categoryModel.setIcon(getString(R.string.ic_folder));
         categoryModel.setCategoryName("English");
         categoryModel.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
+        categoryModel.setIconColor(getResources().getColor(R.color.common_blue));
 
         List<CategoryModel> childList = new ArrayList<>();
         CategoryModel cet4 = new CategoryModel();
@@ -77,6 +80,7 @@ public class MyCategoryActivity extends BaseActivity {
         categoryModel1.setIcon(getString(R.string.ic_folder));
         categoryModel1.setCategoryName("Program");
         categoryModel1.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
+        categoryModel1.setIconColor(getResources().getColor(R.color.common_blue));
 
         categoryModelList.add(categoryModel);
         categoryModelList.add(categoryModel1);
@@ -85,42 +89,63 @@ public class MyCategoryActivity extends BaseActivity {
     private void initViewData() {
         mRootTreeNode = TreeNode.root();
 
-        generateTreeView(mRootTreeNode, categoryModelList);
+        initTreeNode(mRootTreeNode, categoryModelList);
 
-        AndroidTreeView mTreeView = new AndroidTreeView(this, mRootTreeNode);
+        mTreeView = new AndroidTreeView(this, mRootTreeNode);
         mTreeView.setDefaultAnimation(true);
         mTreeView.setDefaultContainerStyle(R.style.TreeNodeStyleDivided, true);
         mContainerView.addView(mTreeView.getView());
     }
 
-    private void generateTreeView(TreeNode parentNode, List<CategoryModel> list) {
+    private void initTreeNode(TreeNode parentNode, List<CategoryModel> list) {
         if (list != null && list.size() > 0) {
             for (CategoryModel model : list) {
-                TreeNode tempTreeNode = new TreeNode(model);
-                switch (model.getLevel()) {
-                    case Constant.CategoryLevel.FIRST_LEVEL:
-                        tempTreeNode.setViewHolder(
-                                new FirstLevelHolder(this));
-                        break;
-                    case Constant.CategoryLevel.SECOND_LEVEL:
-                        tempTreeNode.setViewHolder(
-                                new SecondLevelHolder(this));
-                        break;
-                    case Constant.CategoryLevel.THIRD_LEVEL:
-                        tempTreeNode.setViewHolder(
-                                new ThirdLevelHolder(this));
-                        break;
+                TreeNode treeNode = generateTreeNode(model);
 
-                }
-                generateTreeView(tempTreeNode, model.getChildCategoryList());
+                initTreeNode(treeNode, model.getChildCategoryList());
 
-                parentNode.addChildren(tempTreeNode);
+                parentNode.addChildren(treeNode);
             }
         }
     }
 
+    private TreeNode generateTreeNode(CategoryModel model){
+        TreeNode tempTreeNode = new TreeNode(model);
+        switch (model.getLevel()) {
+            case Constant.CategoryLevel.FIRST_LEVEL:
+                tempTreeNode.setViewHolder(
+                        new FirstLevelHolder(this));
+                break;
+            case Constant.CategoryLevel.SECOND_LEVEL:
+                tempTreeNode.setViewHolder(
+                        new SecondLevelHolder(this));
+                break;
+            case Constant.CategoryLevel.THIRD_LEVEL:
+                tempTreeNode.setViewHolder(
+                        new ThirdLevelHolder(this));
+                break;
+
+        }
+
+        return tempTreeNode;
+    }
+
     @Override
     public void onHeaderRightClicked() {
-        startActivity(AddNewCategoryActivity.class);
+        startActivity(getStartOnNewIntent(AddNewCategoryActivity.class));
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (intent != null){
+            CategoryModel model = (CategoryModel) intent.getSerializableExtra("model");
+            categoryModelList.add(model);
+
+            mTreeView.addNode(mRootTreeNode, new TreeNode(model).setViewHolder(
+                    new FirstLevelHolder(this)));
+        }
+
     }
 }

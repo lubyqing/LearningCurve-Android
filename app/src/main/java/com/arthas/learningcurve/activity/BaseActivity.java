@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 import com.arthas.learningcurve.base.AppManager;
 import com.arthas.learningcurve.base.BaseApplication;
+import com.arthas.learningcurve.common.Constant;
 import com.arthas.learningcurve.injection.component.ApplicationComponent;
 import com.arthas.learningcurve.injection.module.ActivityModule;
 import com.arthas.learningcurve.utils.ToastUtils;
@@ -130,5 +131,24 @@ public class BaseActivity extends FragmentActivity implements HeaderBar.OnHeader
     @Override
     public void onHeaderRightClicked() {
 
+    }
+
+    protected Intent getBackOnNewIntent(){
+        Intent intent = getIntent();
+        try {
+            intent.setClass(this, Class.forName(intent.getStringExtra(Constant.KEY_CLASS_NAME)));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return intent;
+    }
+
+    protected Intent getStartOnNewIntent(Class activityClass){
+        Intent intent = new Intent();
+        intent.setClass(this, activityClass);
+        intent.putExtra(Constant.KEY_CLASS_NAME, this.getClass().getName());
+        return intent;
     }
 }

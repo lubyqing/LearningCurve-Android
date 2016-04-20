@@ -1,9 +1,11 @@
 package com.arthas.learningcurve.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Tcz on 16/4/13.
  */
-public class BaseModel {
+public class BaseModel implements Serializable{
     protected Integer code;
     protected String message;
     protected Token token;

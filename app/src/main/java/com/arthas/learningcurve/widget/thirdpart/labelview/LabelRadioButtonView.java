@@ -3,21 +3,22 @@ package com.arthas.learningcurve.widget.thirdpart.labelview;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.RadioButton;
 
-public class LabelTextView extends TextView {
+public class LabelRadioButtonView extends RadioButton {
 
     LabelViewHelper utils;
 
-    public LabelTextView(Context context) {
+    public LabelRadioButtonView(Context context) {
         this(context, null);
     }
 
-    public LabelTextView(Context context, AttributeSet attrs) {
+    public LabelRadioButtonView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public LabelTextView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public LabelRadioButtonView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         utils = new LabelViewHelper(context, attrs, defStyleAttr);
     }
@@ -44,11 +45,11 @@ public class LabelTextView extends TextView {
         return utils.getLabelDistance();
     }
 
-    public boolean isLabelEnable() {
+    public boolean isLabelVisual() {
         return utils.isLabelVisual();
     }
 
-    public void setLabelEnable(boolean enable) {
+    public void setLabelVisual(boolean enable) {
         utils.setLabelVisual(this, enable);
     }
 
@@ -90,14 +91,6 @@ public class LabelTextView extends TextView {
 
     public void setLabelTextSize(int textSize) {
         utils.setLabelTextSize(this, textSize);
-    }
-
-    public boolean isLabelVisual() {
-        return utils.isLabelVisual();
-    }
-
-    public void setLabelVisual(boolean visual) {
-        utils.setLabelVisual(this,visual);
     }
 
 }

@@ -28,6 +28,7 @@
         <activity android:name=".activity.AddNewCategoryActivity"/>
         <activity android:name=".activity.MyCategoryActivity"/>
         <activity android:name=".activity.TimeLineActivity"/>
+        <activity android:name=".activity.IconFontActivity"/>
     </application>
 
 </manifest>

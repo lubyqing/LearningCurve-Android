@@ -10,7 +10,12 @@ import android.widget.LinearLayout;
 
 import com.arthas.learningcurve.R;
 import com.arthas.learningcurve.common.Constant;
-import com.arthas.learningcurve.model.CategoryModel;
+import com.arthas.learningcurve.injection.component.AddCategoryComponent;
+import com.arthas.learningcurve.injection.component.DaggerAddCategoryComponent;
+import com.arthas.learningcurve.injection.module.AddCategoryModule;
+import com.arthas.learningcurve.interfaceview.AddCategoryView;
+import com.arthas.learningcurve.presenter.AddCategoryPresenter;
+import com.arthas.learningcurve.widget.BaseProgressDialog;
 import com.arthas.learningcurve.widget.ClearEditText;
 import com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView;
 import com.cunoraz.tagview.Tag;
@@ -20,6 +25,8 @@ import com.github.johnkil.print.PrintView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -27,7 +34,7 @@ import butterknife.OnClick;
 /**
  * Created by Tcz on 16/4/18.
  */
-public class AddNewCategoryActivity extends BaseActivity {
+public class AddNewCategoryActivity extends BaseActivity implements AddCategoryView {
     @Bind(R.id.view_tag)
     TagView mTagView;
     @Bind(R.id.tv_label_dark_gray)
@@ -49,6 +56,14 @@ public class AddNewCategoryActivity extends BaseActivity {
     @Bind(R.id.btn_add_category)
     Button mAddCategoryBtn;
 
+
+    @Inject
+    AddCategoryPresenter mAddCategoryPresenter;
+
+    private BaseProgressDialog mProgressDialog;
+
+    private AddCategoryComponent mAddCategoryComponent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +72,17 @@ public class AddNewCategoryActivity extends BaseActivity {
 
         initLabelView();
         initDefaultCategory();
+
+        mProgressDialog = BaseProgressDialog.createDialog(this);
+
+        this.mAddCategoryComponent = DaggerAddCategoryComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .addCategoryModule(new AddCategoryModule())
+                .build();
+        mAddCategoryComponent.inject(this);
+
+        mAddCategoryPresenter.setView(this);
     }
 
     private void initLabelView() {
@@ -98,20 +124,21 @@ public class AddNewCategoryActivity extends BaseActivity {
                 overridePendingTransition(R.anim.push_bottom_in, R.anim.activity_stay);
                 break;
             case R.id.btn_add_category:
-                if (TextUtils.isEmpty(mCategoryNameEt.getText())){
+                if (TextUtils.isEmpty(mCategoryNameEt.getText())) {
                     showToast("请输入分类名称");
                     return;
                 }
-                CategoryModel model = new CategoryModel();
-                model.setCategoryName(mCategoryNameEt.getText().toString());
-                model.setIcon(mNodeIconPv.getIconText().toString());
-                model.setIconColor(mNodeIconPv.getIconColor().getDefaultColor());
-                model.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
-
-                Intent intent = getBackOnNewIntent();
-                intent.putExtra("model",model);
-                startActivity(intent);
-                finish();
+//                CategoryModel model = new CategoryModel();
+//                model.setCategoryName(mCategoryNameEt.getText().toString());
+//                model.setIcon(mNodeIconPv.getIconText().toString());
+//                model.setIconColor(mNodeIconPv.getIconColor().getDefaultColor());
+//                model.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
+//
+//                Intent intent = getBackOnNewIntent();
+//                intent.putExtra("model", model);
+//                startActivity(intent);
+//                finish();
+                mAddCategoryPresenter.addCateogry();
                 break;
         }
     }
@@ -149,4 +176,43 @@ public class AddNewCategoryActivity extends BaseActivity {
 
     }
 
+    @Override
+    public CharSequence getIconFont() {
+        return mNodeIconPv.getIconText();
+    }
+
+    @Override
+    public Integer getIconColor() {
+        return mNodeIconPv.getIconColor().getDefaultColor();
+    }
+
+    @Override
+    public CharSequence getCategoryName() {
+        return mCategoryNameEt.getText();
+    }
+
+    @Override
+    public void onAddSuccessed(String msg) {
+        showToast(msg);
+    }
+
+    @Override
+    public void showLoading() {
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void dismissLoading() {
+        mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void showErrorMsg(int errorId) {
+        showToast(errorId);
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        showToast(errorMsg);
+    }
 }

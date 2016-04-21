@@ -1,7 +1,6 @@
 package com.arthas.learningcurve.adapter.holder;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -10,14 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import com.arthas.learningcurve.R;
-import com.arthas.learningcurve.model.CategoryModel;
+import com.arthas.learningcurve.model.CategoryTreeModel;
 import com.github.johnkil.print.PrintView;
 import com.unnamed.b.atv.model.TreeNode;
 
 /**
  * Created by Bogdan Melnychuk on 2/13/15.
  */
-public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel> {
+public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryTreeModel> {
 
 
     public FirstLevelHolder(Context context) {
@@ -25,7 +24,7 @@ public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel>
     }
 
     @Override
-    public View createNodeView(TreeNode node, CategoryModel value) {
+    public View createNodeView(TreeNode node, CategoryTreeModel value) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_first_level_node, null, false);
         TextView tvValue = (TextView) view.findViewById(R.id.pv_node_text);
@@ -39,7 +38,7 @@ public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel>
         tvValue.append(spannableString);
 
         PrintView iconView = (PrintView) view.findViewById(R.id.pv_node_icon);
-        iconView.setIconText(value.getIcon());
+        iconView.setIconText(value.getIconFont());
         iconView.setIconColor(value.getIconColor());
 
         PrintView addView = (PrintView) view.findViewById(R.id.pv_node_add);
@@ -49,9 +48,9 @@ public class FirstLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel>
         addView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CategoryModel model = new CategoryModel();
+                CategoryTreeModel model = new CategoryTreeModel();
                 model.setCategoryName("Two level");
-                model.setIcon(value.getIcon());
+                model.setIconFont(value.getIconFont());
                 model.setIconColor(value.getIconColor());
                 tView.addNode(node,new TreeNode(model).setViewHolder(new SecondLevelHolder(context)));
             }

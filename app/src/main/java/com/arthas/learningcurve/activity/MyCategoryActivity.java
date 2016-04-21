@@ -7,7 +7,15 @@ import android.widget.FrameLayout;
 import com.arthas.learningcurve.R;
 import com.arthas.learningcurve.adapter.holder.*;
 import com.arthas.learningcurve.common.Constant;
-import com.arthas.learningcurve.model.CategoryModel;
+import com.arthas.learningcurve.injection.component.DaggerAddCategoryComponent;
+import com.arthas.learningcurve.injection.component.DaggerGetCategoryComponent;
+import com.arthas.learningcurve.injection.component.GetCategoryComponent;
+import com.arthas.learningcurve.injection.module.AddCategoryModule;
+import com.arthas.learningcurve.injection.module.GetCategoryModule;
+import com.arthas.learningcurve.interfaceview.GetAllCategoryView;
+import com.arthas.learningcurve.model.CategoryTreeModel;
+import com.arthas.learningcurve.presenter.GetCategoryPresenter;
+import com.arthas.learningcurve.widget.BaseProgressDialog;
 import com.arthas.learningcurve.widget.HeaderBar;
 import com.unnamed.b.atv.model.TreeNode;
 import com.unnamed.b.atv.view.AndroidTreeView;
@@ -15,21 +23,30 @@ import com.unnamed.b.atv.view.AndroidTreeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by Tcz on 16/4/18.
  */
-public class MyCategoryActivity extends BaseActivity {
+public class MyCategoryActivity extends BaseActivity implements GetAllCategoryView {
     @Bind(R.id.header_bar)
     HeaderBar mHeaderBar;
     @Bind(R.id.container)
     FrameLayout mContainerView;
 
     private TreeNode mRootTreeNode;
-    private List<CategoryModel> categoryModelList;
+    private List<CategoryTreeModel> categoryModelList;
     AndroidTreeView mTreeView;
+
+    @Inject
+    GetCategoryPresenter mGetCategoryPresenter;
+
+    private BaseProgressDialog mProgressDialog;
+
+    private GetCategoryComponent mGetCategoryComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,54 +54,23 @@ public class MyCategoryActivity extends BaseActivity {
         setContentView(R.layout.activity_my_category);
         ButterKnife.bind(this);
 
+        mProgressDialog = BaseProgressDialog.createDialog(this);
         mHeaderBar.setOnHeaderBtnClickedListener(this);
 
-        initTestData();
         initViewData();
 
+        this.mGetCategoryComponent = DaggerGetCategoryComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .getCategoryModule(new GetCategoryModule())
+                .build();
+        mGetCategoryComponent.inject(this);
+
+        mGetCategoryPresenter.setView(this);
+
+        mGetCategoryPresenter.getCateogry();
     }
 
-
-    private void initTestData() {
-        categoryModelList = new ArrayList<>();
-
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setIcon(getString(R.string.ic_folder));
-        categoryModel.setCategoryName("English");
-        categoryModel.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
-        categoryModel.setIconColor(getResources().getColor(R.color.common_blue));
-
-        List<CategoryModel> childList = new ArrayList<>();
-        CategoryModel cet4 = new CategoryModel();
-        cet4.setIcon(getString(R.string.ic_folder_shared));
-        cet4.setCategoryName("CET4");
-        cet4.setLevel(categoryModel.getLevel() + 1);
-
-        List<CategoryModel> childList1 = new ArrayList<>();
-        CategoryModel child1 = new CategoryModel();
-        child1.setLevel(3);
-        child1.setCategoryName("60 score");
-        child1.setIcon(getString(R.string.ic_folder_mydrive));
-        childList1.add(child1);
-        cet4.setChildCategoryList(childList1);
-        CategoryModel cet6 = new CategoryModel();
-        cet6.setIcon(getString(R.string.ic_folder_shared));
-        cet6.setCategoryName("CET6");
-        cet6.setLevel(categoryModel.getLevel() + 1);
-        childList.add(cet4);
-        childList.add(cet6);
-        categoryModel.setChildCategoryList(childList);
-
-
-        CategoryModel categoryModel1 = new CategoryModel();
-        categoryModel1.setIcon(getString(R.string.ic_folder));
-        categoryModel1.setCategoryName("Program");
-        categoryModel1.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
-        categoryModel1.setIconColor(getResources().getColor(R.color.common_blue));
-
-        categoryModelList.add(categoryModel);
-        categoryModelList.add(categoryModel1);
-    }
 
     private void initViewData() {
         mRootTreeNode = TreeNode.root();
@@ -97,19 +83,19 @@ public class MyCategoryActivity extends BaseActivity {
         mContainerView.addView(mTreeView.getView());
     }
 
-    private void initTreeNode(TreeNode parentNode, List<CategoryModel> list) {
+    private void initTreeNode(TreeNode parentNode, List<CategoryTreeModel> list) {
         if (list != null && list.size() > 0) {
-            for (CategoryModel model : list) {
+            for (CategoryTreeModel model : list) {
                 TreeNode treeNode = generateTreeNode(model);
 
-                initTreeNode(treeNode, model.getChildCategoryList());
+                initTreeNode(treeNode, model.getChildList());
 
                 parentNode.addChildren(treeNode);
             }
         }
     }
 
-    private TreeNode generateTreeNode(CategoryModel model){
+    private TreeNode generateTreeNode(CategoryTreeModel model) {
         TreeNode tempTreeNode = new TreeNode(model);
         switch (model.getLevel()) {
             case Constant.CategoryLevel.FIRST_LEVEL:
@@ -139,13 +125,44 @@ public class MyCategoryActivity extends BaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        if (intent != null){
-            CategoryModel model = (CategoryModel) intent.getSerializableExtra("model");
+        if (intent != null) {
+            CategoryTreeModel model = (CategoryTreeModel) intent.getSerializableExtra("model");
             categoryModelList.add(model);
 
             mTreeView.addNode(mRootTreeNode, new TreeNode(model).setViewHolder(
                     new FirstLevelHolder(this)));
         }
 
+    }
+
+    @Override
+    public void onGetSuccessed(List<CategoryTreeModel> treeList) {
+        categoryModelList = treeList;
+        if (categoryModelList != null && categoryModelList.size() > 0){
+            for (CategoryTreeModel model : categoryModelList){
+                mTreeView.addNode(mRootTreeNode, new TreeNode(model).setViewHolder(
+                        new FirstLevelHolder(this)));
+            }
+        }
+    }
+
+    @Override
+    public void showLoading() {
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void dismissLoading() {
+        mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void showErrorMsg(int errorId) {
+        showToast(errorId);
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
+        showToast(errorMsg);
     }
 }

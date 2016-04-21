@@ -9,14 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import com.arthas.learningcurve.R;
-import com.arthas.learningcurve.model.CategoryModel;
+import com.arthas.learningcurve.model.CategoryTreeModel;
 import com.github.johnkil.print.PrintView;
 import com.unnamed.b.atv.model.TreeNode;
 
 /**
  * Created by Bogdan Melnychuk on 2/13/15.
  */
-public class SecondLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel> {
+public class SecondLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryTreeModel> {
 
     private PrintView arrowView;
 
@@ -25,7 +25,7 @@ public class SecondLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel
     }
 
     @Override
-    public View createNodeView(TreeNode node, CategoryModel value) {
+    public View createNodeView(TreeNode node, CategoryTreeModel value) {
         final LayoutInflater inflater = LayoutInflater.from(context);
         final View
                 view = inflater.inflate(R.layout.layout_second_level_node, null, false);
@@ -40,7 +40,7 @@ public class SecondLevelHolder extends TreeNode.BaseNodeViewHolder<CategoryModel
         tvValue.append(spannableString);
 
         final PrintView iconView = (PrintView) view.findViewById(R.id.pv_node_icon);
-        iconView.setIconText(value.getIcon());
+        iconView.setIconText(value.getIconFont());
 
         arrowView = (PrintView) view.findViewById(R.id.pv_node_arrow);
         if (node.isLeaf()) {

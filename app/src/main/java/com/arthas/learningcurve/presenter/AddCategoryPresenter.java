@@ -45,20 +45,20 @@ public class AddCategoryPresenter {
     }
 
 
-    public void addCateogry() {
+    public void addCateogry(boolean isDefault) {
         CategoryTreeModel model = new CategoryTreeModel();
         model.setIconFont(mAddCategoryView.getIconFont().toString());
         model.setParentId(0);
         model.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
-        model.setCategoryName(mAddCategoryView.getCategoryName().toString());
+        model.setCategoryName(isDefault ? mAddCategoryView.getTagText() : mAddCategoryView.getCategoryName().toString());
         model.setIconColor(mAddCategoryView.getIconColor());
         mAddCategoryView.showLoading();
 
         ((AddCategoryInteractorImpl) addCategoryInteractor).setCategoryTreeModel(model);
-        addCategoryInteractor.execute(new DefaultSubscriber<String>() {
+        addCategoryInteractor.execute(new DefaultSubscriber<CategoryTreeModel>() {
             @Override
-            public void onNext(String msg) {
-                mAddCategoryView.onAddSuccessed(msg);
+            public void onNext(CategoryTreeModel model) {
+                mAddCategoryView.onAddSuccessed(model);
             }
 
             @Override

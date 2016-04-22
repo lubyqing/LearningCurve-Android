@@ -1,5 +1,6 @@
 package com.arthas.learningcurve.interactor.impl;
 
+import com.arthas.learningcurve.common.ResultCode;
 import com.arthas.learningcurve.domain.AddCategoryReq;
 import com.arthas.learningcurve.domain.BaseUserInfo;
 import com.arthas.learningcurve.domain.CategoryTree;
@@ -47,6 +48,12 @@ public class AddCategoryInteractorImpl extends BaseInteractor {
         categoryTree.setParentId(categoryTreeModel.getParentId());
 
         req.setCategoryTree(categoryTree);
-        return categoryRepository.addCategory(req).map(resp -> resp.getMessage());
+        return categoryRepository.addCategory(req).map(resp -> {
+            if (resp.getCode() == ResultCode.SUCCESS){
+                categoryTreeModel.setId(resp.getCategoryTree().getId());
+                return categoryTreeModel;
+            }
+            return null;
+        });
     }
 }

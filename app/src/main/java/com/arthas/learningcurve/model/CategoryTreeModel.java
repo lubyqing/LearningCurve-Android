@@ -1,11 +1,12 @@
 package com.arthas.learningcurve.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Tcz on 16/4/21.
  */
-public class CategoryTreeModel {
+public class CategoryTreeModel implements Serializable{
     private Integer id;
 
     private Integer iconColor;

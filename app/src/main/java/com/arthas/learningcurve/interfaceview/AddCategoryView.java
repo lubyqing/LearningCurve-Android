@@ -1,5 +1,6 @@
 package com.arthas.learningcurve.interfaceview;
 
+import com.arthas.learningcurve.model.CategoryTreeModel;
 import com.arthas.learningcurve.model.UserInfoModel;
 
 /**
@@ -10,8 +11,9 @@ public interface AddCategoryView extends BaseView{
     CharSequence getIconFont();
     Integer getIconColor();
     CharSequence getCategoryName();
+    String getTagText();
 
-    void onAddSuccessed(String msg);
+    void onAddSuccessed(CategoryTreeModel model);
 
 
 

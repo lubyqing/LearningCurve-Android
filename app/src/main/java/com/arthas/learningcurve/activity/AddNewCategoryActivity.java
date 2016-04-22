@@ -14,14 +14,17 @@ import com.arthas.learningcurve.injection.component.AddCategoryComponent;
 import com.arthas.learningcurve.injection.component.DaggerAddCategoryComponent;
 import com.arthas.learningcurve.injection.module.AddCategoryModule;
 import com.arthas.learningcurve.interfaceview.AddCategoryView;
+import com.arthas.learningcurve.model.CategoryTreeModel;
 import com.arthas.learningcurve.presenter.AddCategoryPresenter;
 import com.arthas.learningcurve.widget.BaseProgressDialog;
 import com.arthas.learningcurve.widget.ClearEditText;
 import com.arthas.learningcurve.widget.thirdpart.labelview.LabelTextView;
+import com.cunoraz.tagview.OnTagClickListener;
 import com.cunoraz.tagview.Tag;
 import com.cunoraz.tagview.TagView;
 import com.github.johnkil.print.PrintView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +67,7 @@ public class AddNewCategoryActivity extends BaseActivity implements AddCategoryV
 
     private AddCategoryComponent mAddCategoryComponent;
 
+    private Tag mClickTag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +104,14 @@ public class AddNewCategoryActivity extends BaseActivity implements AddCategoryV
             tagList.add(tag);
         }
         mTagView.addTags(tagList);
+
+        mTagView.setOnTagClickListener(new OnTagClickListener() {
+            @Override
+            public void onTagClick(Tag tag, int position) {
+                mClickTag = tag;
+                mAddCategoryPresenter.addCateogry(true);
+            }
+        });
     }
 
     @OnClick({R.id.tv_label_dark_gray,
@@ -128,17 +140,7 @@ public class AddNewCategoryActivity extends BaseActivity implements AddCategoryV
                     showToast("请输入分类名称");
                     return;
                 }
-//                CategoryModel model = new CategoryModel();
-//                model.setCategoryName(mCategoryNameEt.getText().toString());
-//                model.setIcon(mNodeIconPv.getIconText().toString());
-//                model.setIconColor(mNodeIconPv.getIconColor().getDefaultColor());
-//                model.setLevel(Constant.CategoryLevel.FIRST_LEVEL);
-//
-//                Intent intent = getBackOnNewIntent();
-//                intent.putExtra("model", model);
-//                startActivity(intent);
-//                finish();
-                mAddCategoryPresenter.addCateogry();
+                mAddCategoryPresenter.addCateogry(false);
                 break;
         }
     }
@@ -192,8 +194,20 @@ public class AddNewCategoryActivity extends BaseActivity implements AddCategoryV
     }
 
     @Override
-    public void onAddSuccessed(String msg) {
-        showToast(msg);
+    public String getTagText() {
+        return mClickTag == null ?null:mClickTag.text;
+    }
+
+    @Override
+    public void onAddSuccessed(CategoryTreeModel model) {
+        if (model == null){
+            showToast("添加分类失败");
+        }else{
+            Intent intent = getBackOnNewIntent();
+            intent.putExtra("model", (Serializable) model);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

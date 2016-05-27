@@ -16,6 +16,6 @@ public class RetrofitBuilderFactory {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(FastJsonConverterFactory.create())
 //               .baseUrl("http://learningcurve.duapp.com");
-                .baseUrl("http://10.28.3.14:8080/learningcurve/");
+                .baseUrl("http://10.28.3.36:8080/learningcurve/");
     }
 }

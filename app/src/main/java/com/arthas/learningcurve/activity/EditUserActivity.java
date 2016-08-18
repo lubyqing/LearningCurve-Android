@@ -13,4 +13,5 @@ public class EditUserActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
     }
+
 }

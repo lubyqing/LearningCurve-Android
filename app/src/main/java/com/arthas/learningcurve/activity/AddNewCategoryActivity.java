@@ -133,7 +133,7 @@ public class AddNewCategoryActivity extends BaseActivity implements AddCategoryV
                 break;
             case R.id.ll_icon_container:
                 startActivity(getStartOnNewIntent(IconFontActivity.class));
-                overridePendingTransition(R.anim.push_bottom_in, R.anim.activity_stay);
+                overridePendingTransition(R.anim.push_bottom_in, 0);
                 break;
             case R.id.btn_add_category:
                 if (TextUtils.isEmpty(mCategoryNameEt.getText())) {

@@ -55,5 +55,4 @@ public class AddCategoryModule {
         return categoryRepository;
     }
 
-
 }
